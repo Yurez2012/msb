@@ -16,6 +16,7 @@ class CarCategory extends Model
         'car_id',
         'category_id',
         'enable',
+        'distance',
     ];
 
     protected $casts = [
@@ -36,5 +37,13 @@ class CarCategory extends Model
     public function category(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Category::class, 'id', 'category_id')->withDefault();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function histories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CarCategoryHistory::class, 'car_category_id', 'id');
     }
 }

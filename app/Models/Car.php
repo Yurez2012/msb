@@ -67,4 +67,13 @@ class Car extends Model
     {
         return $this->hasMany(CarCategory::class, 'car_id');
     }
+
+    /**
+     * @return HasMany
+     */
+    public function categoriesEnable(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CarCategory::class, 'car_id')
+            ->where('enable', true);
+    }
 }

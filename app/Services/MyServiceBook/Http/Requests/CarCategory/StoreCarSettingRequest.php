@@ -14,6 +14,7 @@ class StoreCarSettingRequest extends FormRequest
         return [
             'category_id' => ['numeric'],
             'enable'      => ['boolean'],
+            'distance'    => ['numeric'],
         ];
     }
 }

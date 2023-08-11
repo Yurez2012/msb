@@ -13,23 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('car_categories', function (Blueprint $table) {
+        Schema::create('car_category_histories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('car_id');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('car_category_id');
             $table->integer('distance')->nullable(true);
-            $table->boolean('enable')->default(false);
             $table->timestamps();
 
-            $table->foreign('car_id')
+            $table->foreign('car_category_id')
                 ->references('id')
-                ->on('cars')
-                ->onDelete('cascade');
-
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
+                ->on('car_categories')
+                ->restrictOnDelete();
         });
     }
 
@@ -40,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_categories');
+        Schema::dropIfExists('car_category_histories');
     }
 };
