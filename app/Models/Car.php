@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Car extends Model
 {
@@ -41,6 +42,14 @@ class Car extends Model
         "drive",
         "steering_type",
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function setting(): HasOne
+    {
+        return $this->hasOne(CarSetting::class, 'car_id', 'id')->withDefault();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -16,17 +16,21 @@ use App\Services\MyServiceBook\Http\Controllers\Auth\LoginController;
 use App\Services\MyServiceBook\Http\Controllers\Auth\RegisterController;
 use App\Services\MyServiceBook\Http\Controllers\Car\CarController;
 use App\Services\MyServiceBook\Http\Controllers\CarFind\CarFindController;
+use App\Services\MyServiceBook\Http\Controllers\CarSetting\CarSettingController;
 use App\Services\MyServiceBook\Http\Controllers\CarUser\CarUserController;
+use App\Services\MyServiceBook\Http\Controllers\Category\CategoryController;
 
-Route::group(['prefix' => 'my_service_book', 'middleware' => ['cors', 'json.response']], function() {
+Route::group(['prefix' => 'my_service_book', 'middleware' => ['cors', 'json.response']], function () {
     Route::post('register', [RegisterController::class, 'store']);
     Route::post('login', [LoginController::class, 'store']);
 
     Route::middleware('auth:api')->group(function () {
-        Route::group(['prefix' => 'car'], function() {
+        Route::get('/category', [CategoryController::class, 'index']);
+        Route::group(['prefix' => 'car'], function () {
             Route::get('/', [CarController::class, 'index']);
             Route::get('/{car}', [CarController::class, 'show']);
             Route::resource('/{car}/user', CarUserController::class)->only(['store']);
+            Route::resource('/{car}/setting', CarSettingController::class)->only(['store', 'index']);
             Route::resource('/find', CarFindController::class)->only(['show']);
         });
     });
