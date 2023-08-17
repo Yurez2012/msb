@@ -18,7 +18,7 @@ class ShowCarFindByApiJob
      */
     public function handle()
     {
-        $apiPrefix = "https://api.vindecoder.eu/3.1";
+        $apiPrefix = "https://api.vindecoder.eu/3.2";
         $apikey = "de90a346aaeb";   // Your API key
         $secretkey = "e000435f73";  // Your secret key
         $id = "decode";
@@ -26,7 +26,7 @@ class ShowCarFindByApiJob
 
         $controlsum = substr(sha1("{$vin}|{$id}|{$apikey}|{$secretkey}"), 0, 10);
 
-        $data = file_get_contents("{$apiPrefix}/{$apikey}/{$controlsum}/decode/info/{$vin}.json", false);
+        $data = file_get_contents("{$apiPrefix}/{$apikey}/{$controlsum}/decode/{$vin}.json", false);
 
         return json_decode($data);
     }
