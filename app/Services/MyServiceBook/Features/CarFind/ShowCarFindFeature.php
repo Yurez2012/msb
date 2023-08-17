@@ -2,6 +2,7 @@
 
 namespace App\Services\MyServiceBook\Features\CarFind;
 
+use App\Domains\Car\Jobs\AttachCarToUserJob;
 use App\Domains\Car\Jobs\CreateCarJob;
 use App\Domains\Car\Jobs\GetCarByVinCodeJob;
 use App\Domains\CarUser\Jobs\PrepareDataCarApiJob;
@@ -25,6 +26,8 @@ class ShowCarFindFeature extends Feature
             $carPrepareData = $this->run(new PrepareDataCarApiJob($data));
             $car = $this->run(new CreateCarJob($carPrepareData));
         }
+
+        $this->run(new AttachCarToUserJob($car));
 
         return $this->run(new RespondWithJsonJob($car->toArray(), Response::HTTP_OK));
     }
