@@ -17,6 +17,7 @@ use App\Services\MyServiceBook\Http\Controllers\Auth\RegisterController;
 use App\Services\MyServiceBook\Http\Controllers\Car\CarController;
 use App\Services\MyServiceBook\Http\Controllers\CarCategory\CarCategoryController;
 use App\Services\MyServiceBook\Http\Controllers\CarCategoryEnable\CarCategoryEnableController;
+use App\Services\MyServiceBook\Http\Controllers\CarCategoryHistory\CarCategoryHistoryController;
 use App\Services\MyServiceBook\Http\Controllers\CarFind\CarFindController;
 use App\Services\MyServiceBook\Http\Controllers\CarSetting\CarSettingController;
 use App\Services\MyServiceBook\Http\Controllers\CarUser\CarUserController;
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'my_service_book', 'middleware' => ['cors', 'json.resp
             Route::resource('/{car}/user', CarUserController::class)->only(['store']);
             Route::resource('/{car}/setting', CarSettingController::class)->only(['store', 'index']);
             Route::resource('/{car}/category', CarCategoryController::class)->only(['store', 'index']);
+            Route::resource('/{car}/category/{category}/history', CarCategoryHistoryController::class)->only(['index']);
             Route::resource('/{car}/category_enable', CarCategoryEnableController::class)->only(['store', 'index']);
             Route::resource('/find', CarFindController::class)->only(['show']);
         });

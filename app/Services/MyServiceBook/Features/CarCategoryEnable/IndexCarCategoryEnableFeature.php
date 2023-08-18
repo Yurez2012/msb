@@ -2,11 +2,9 @@
 
 namespace App\Services\MyServiceBook\Features\CarCategoryEnable;
 
-use App\Domains\CarCategory\Jobs\PrepareCarCategoryJob;
 use App\Domains\CarSetting\Jobs\CalcCarSettingDistanceByTimeJob;
 use App\Domains\Http\Jobs\RespondWithJsonJob;
 use App\Models\Car;
-use App\Services\MyServiceBook\Http\Resources\CarCategory\CarCategoryResource;
 use App\Services\MyServiceBook\Http\Resources\CarCategoryEnable\CarCategoryEnableResource;
 use Illuminate\Http\Response;
 use Lucid\Units\Feature;

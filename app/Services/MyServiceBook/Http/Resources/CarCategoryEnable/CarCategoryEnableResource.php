@@ -47,7 +47,7 @@ class CarCategoryEnableResource extends JsonResource
             'updated_at'        => $this->resource["updated_at"],
             'name'              => $this->resource->category->title,
             'enable'            => $this->resource["enable"],
-            'distance'          => $this->resource["distance"],
+            'distance'          => $this->resource["distance"] ?: 0,
             'is_should_replace' => $isShouldReplace,
             'histories'         => $this->resource->histories,
         ];

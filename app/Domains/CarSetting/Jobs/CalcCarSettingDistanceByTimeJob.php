@@ -21,7 +21,7 @@ class CalcCarSettingDistanceByTimeJob
     {
         $distance        = $this->car->setting->distance;
         $distanceMonth   = $this->car->setting->distance_month;
-        $date            = $this->car->setting->updated_at;
+        $date            = $this->car->setting->updated_at ?: now();
         $distanceByMonth = $date->diffInMonths(now()) * $distanceMonth;
 
         return $distance + $distanceByMonth;
