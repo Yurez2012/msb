@@ -33,16 +33,17 @@ class CarCategoryEnableResource extends JsonResource
      */
     public function toArray($request)
     {
-        $lastHistory     = $this->resource->histories->first();
+        $lastHistory     = $this->resource->histories->last();
         $isShouldReplace = true;
 
         if (isset($lastHistory->distance)) {
-            $isShouldReplace = $lastHistory->distance + $this->resource["distance"] <= self::$distance;
+            $isShouldReplace = $lastHistory->distance + $this->resource["distance"] < self::$distance;
         }
 
         return [
             'id'                => $this->resource["id"],
             'title'             => $this->resource->category->name ?? '',
+            'category_id'       => $this->resource->category->id ?? 0,
             'created_at'        => $this->resource["created_at"],
             'updated_at'        => $this->resource["updated_at"],
             'name'              => $this->resource->category->title,

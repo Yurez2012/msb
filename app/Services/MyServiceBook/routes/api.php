@@ -35,7 +35,7 @@ Route::group(['prefix' => 'my_service_book', 'middleware' => ['cors', 'json.resp
             Route::resource('/{car}/user', CarUserController::class)->only(['store']);
             Route::resource('/{car}/setting', CarSettingController::class)->only(['store', 'index']);
             Route::resource('/{car}/category', CarCategoryController::class)->only(['store', 'index']);
-            Route::resource('/{car}/category/{category}/history', CarCategoryHistoryController::class)->only(['index']);
+            Route::resource('/{car}/category/{category}/history', CarCategoryHistoryController::class)->only(['index', 'store']);
             Route::resource('/{car}/category_enable', CarCategoryEnableController::class)->only(['store', 'index']);
             Route::resource('/find', CarFindController::class)->only(['show']);
         });
